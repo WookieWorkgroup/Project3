@@ -79,6 +79,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MorseCode.cpp" />
+    <ClCompile Include="Node.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MorseCode.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

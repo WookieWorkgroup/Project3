@@ -17,15 +17,27 @@ Outputs:		Decoded or encoded message
 #include <iostream>
 #include <string> 
 #include <fstream>
+#include "MorseCode.h"
 
-
-using   namespace std;
+using namespace std;
 
 // Functions for the menu
-void displayMenu(ofstream& log_file);
+void displayMenu(ofstream& log_file, MorseCode& morsecode, string& result);
 
 int main()
 {
+	// open file of morse code input
+	ifstream morse;
+	string result = "";
+	MorseCode morsecode;
+	morse.open("morse.txt");
+	if (!morse.is_open())
+	{
+		cerr << "Log.txt did not open, bye!" << endl;
+	}
+
+	
+
 	// Initial variables
 	ofstream log_file;
 	log_file.open("log.txt");
@@ -34,17 +46,29 @@ int main()
 		cerr << "Log.txt did not open, bye!" << endl;
 	}
 
+	while (morsecode.build(morse, log_file) && morse.good())
+	{
+		log_file << "added letter, back to main" << endl;
+
+	}
+
+	// All done with Mr Morse's input
+	morse.close();
+
+
 	// Call the menu for entering calculations
 	while (true)
 	{
-		displayMenu(log_file);
+		displayMenu(log_file, morsecode, result);
 	}
+
+	// close up files
 	log_file.close();
+
 }
 
-void displayMenu(ofstream& log_file)
+void displayMenu(ofstream& log_file, MorseCode& morsecode, string& result)
 {
-
 	string user_input = "";
 
 	// My choices
@@ -52,7 +76,7 @@ void displayMenu(ofstream& log_file)
 	cout << "Please select one: \n\n";
 	cout << "1:\tEnter a message to encode\n";
 	cout << "2:\tEnter a message to decode\n";
-	cout << "3:\tDisplay Result\n";
+	cout << "3:\tDisplay Last EnCode/DecodeResult\n";
 	cout << "4:\tClear entries\n";
 	cout << "5:\tExit\n";
 
@@ -71,16 +95,18 @@ void displayMenu(ofstream& log_file)
 	// What happens when making a choice
 	switch (userSelection)
 	{
-		// Give me an expression
+		// Give me a message to encode
 	case 1:
 		cout << endl << endl;
-		cout << "Enter the message: ";
+		cout << "Enter the message to encode: ";
 		cin.ignore();
 		getline(cin, user_input);
 		log_file << "User entered " << user_input << endl;
 		// See if the polynomial is poperly entered
-		try{
-			
+		try
+		{
+			//result = morsecode.encode(user_input);
+			cout << "Message to encode successfully entered" << endl;
 		}
 
 		// Bad input, try again
@@ -93,32 +119,69 @@ void displayMenu(ofstream& log_file)
 			std::cout << "Process failed, try again!!!" << std::endl;
 			std::cout << "Purging previous data" << std::endl;
 			std::cout << "See log.txt for details" << std::endl;
-			log_file << "Calculation failed, try again!!!" << std::endl;
+			log_file << "Encode failed, try again!!!" << std::endl;
 			log_file << "Purging previous data" << std::endl;
 
 			// Clear any result, user input, or data to purge error
-			
+			//morsecode.clear();
+			result = "";
+			user_input = "";
+		}
+
+
+		cout << endl << endl;
+		break;
+
+	// Message to decode
+	case 2:
+		cout << endl << endl;
+		cout << "Enter the message to decode: ";
+		cin.ignore();
+		getline(cin, user_input);
+		log_file << "User entered " << user_input << endl;
+		// See if the polynomial is poperly entered
+		try
+		{
+			//result = morsecode.decode(user_input);
+			cout << "Message to decode successfully entered" << endl;
+		}
+
+		// Bad input, try again
+		catch (const std::exception &e)
+		{
+			std::cout << std::endl << std::endl;
+
+			std::cout << e.what() << std::endl << std::endl;
+			log_file << e.what() << endl;
+			std::cout << "Process failed, try again!!!" << std::endl;
+			std::cout << "Purging previous data" << std::endl;
+			std::cout << "See log.txt for details" << std::endl;
+			log_file << "Decode failed, try again!!!" << std::endl;
+			log_file << "Purging previous data" << std::endl;
+
+			// Clear any result, user input, or data to purge error
+			//morsecode.clear();
+			result = "";
+			user_input = "";
 
 		}
 
-		cout << endl << endl;
-		break;
 
-		// Show the last expression entered
-	case 2:
 		cout << endl << endl;
-		
 		break;
-		// Show the last result
 	case 3:
 		cout << endl << endl;
-		
+		cout << "Last message coded/decoded was " << result << endl;
 
 		break;
-		// Reset all input and results
+		
+		// Clear
 	case 4:
 	
+		//morsecode.clear();
+		result = "";
 		user_input = "";
+
 		cout << endl << endl;
 		cout << "Entries cleared\n\n";
 		log_file << "Entries cleared\n\n";
