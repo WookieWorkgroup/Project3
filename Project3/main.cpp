@@ -19,7 +19,7 @@ Outputs:		Decoded or encoded message
 #include <fstream>
 
 
-using namespace std;
+using   namespace std;
 
 // Functions for the menu
 void displayMenu(ofstream& log_file);
