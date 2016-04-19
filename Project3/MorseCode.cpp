@@ -37,19 +37,19 @@ bool MorseCode::build(ifstream& morse, ofstream& log_file)
 	// Find a place for the node
 	if (morse >> in)
 	{
-		// Traverse tree based on symbols
-		for (int i = 0; i < in.length(); i++)
+		// Traverse tree based on symbols stopping one before the end
+		for (unsigned int i = 0; i < (in.length() - 1); i++)
 		{
 			// Go left
 			if (in[i] == '*')
 			{
-				curr->left;
+				curr = curr->left;
 			}
 
 			// Go right
 			else if (in[i] == '-')
 			{
-				curr->left;
+				curr = curr->right;
 			}
 
 			// That was not a valid symbol
@@ -57,14 +57,30 @@ bool MorseCode::build(ifstream& morse, ofstream& log_file)
 			{
 				throw std::exception("Error 1: not a valid symbol");
 			}
-				
+
 
 		}
 
+
 		// Give the letter a new home
-		Node* temp_node = new Node(letter, nullptr, nullptr);
-		temp_node = curr;
+		Node* temp_node = new Node;
+		temp_node->data = letter;
 		log_file << "added " << letter << endl;
+
+		// Set the pointers to the new node
+		if (in[in.length() - 1] == '*')
+		{
+			curr->left = temp_node;
+		}
+		else if (in[in.length() - 1] == '-')
+		{
+			curr->right = temp_node;
+		}
+
+		else
+		{
+			throw std::exception("Error 1: not a valid symbol");
+		}
 
 		return true;
 	}
@@ -73,5 +89,25 @@ bool MorseCode::build(ifstream& morse, ofstream& log_file)
 	
 
 	return true;
+}
+
+// See if we have a Morse Code Tree
+bool MorseCode::isEmpty()
+{
+	// Does the root have no childeren
+	if (root->left == nullptr && root->right == nullptr)
+		return true;
+
+	// Something still there
+	return false;
+}
+
+// Clear the primitive variables
+void MorseCode::clear()
+{
+	// Clear output
+	output == "";
+
+	return;
 }
 

@@ -26,19 +26,19 @@ void displayMenu(ofstream& log_file, MorseCode& morsecode, string& result);
 
 int main()
 {
-	// open file of morse code input
-	ifstream morse;
-	string result = "";
+	// Initial variables for results and morse code conversions
 	MorseCode morsecode;
+	string result = "";
+
+	// Open a file of morse codes
+	ifstream morse;
 	morse.open("morse.txt");
 	if (!morse.is_open())
 	{
 		cerr << "Log.txt did not open, bye!" << endl;
 	}
 
-	
-
-	// Initial variables
+	// Give me a log file
 	ofstream log_file;
 	log_file.open("log.txt");
 	if (!log_file.is_open())
@@ -46,6 +46,7 @@ int main()
 		cerr << "Log.txt did not open, bye!" << endl;
 	}
 
+	// Put the morse code into a binary tree
 	while (morsecode.build(morse, log_file) && morse.good())
 	{
 		log_file << "added letter, back to main" << endl;
@@ -76,7 +77,7 @@ void displayMenu(ofstream& log_file, MorseCode& morsecode, string& result)
 	cout << "Please select one: \n\n";
 	cout << "1:\tEnter a message to encode\n";
 	cout << "2:\tEnter a message to decode\n";
-	cout << "3:\tDisplay Last EnCode/DecodeResult\n";
+	cout << "3:\tDisplay Last Encode/Decode Result\n";
 	cout << "4:\tClear entries\n";
 	cout << "5:\tExit\n";
 
@@ -160,7 +161,7 @@ void displayMenu(ofstream& log_file, MorseCode& morsecode, string& result)
 			log_file << "Purging previous data" << std::endl;
 
 			// Clear any result, user input, or data to purge error
-			//morsecode.clear();
+			morsecode.clear();
 			result = "";
 			user_input = "";
 
@@ -178,7 +179,7 @@ void displayMenu(ofstream& log_file, MorseCode& morsecode, string& result)
 		// Clear
 	case 4:
 	
-		//morsecode.clear();
+		morsecode.clear();
 		result = "";
 		user_input = "";
 

@@ -50,4 +50,5 @@ added z
 added letter, back to main
 added q
 added letter, back to main
-User entered rr
+Entries cleared
+
