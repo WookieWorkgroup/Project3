@@ -63,8 +63,7 @@ bool MorseCode::build(ifstream& morse, ofstream& log_file)
 
 
 		// Give the letter a new home
-		Node* temp_node = new Node;
-		temp_node->data = letter;
+		Node* temp_node = new Node(letter, nullptr, nullptr);
 		log_file << "added " << letter << endl;
 
 		// Set the pointers to the new node
