@@ -8,7 +8,7 @@ Course:			CS303
 Program:		Project3 (Wookie Workgroup)
 Team:			Team1
 Due Date:		May 4, 2016
-Description:	Decoder/Encoder
+Description:	Decoder/Encoder, uses a binary search tree where * means fo left and - means go right and root has no data
 Inputs:			Message
 Outputs:		Decoded or encoded message
 

@@ -50,5 +50,3 @@ added z
 added letter, back to main
 added q
 added letter, back to main
-Entries cleared
-
