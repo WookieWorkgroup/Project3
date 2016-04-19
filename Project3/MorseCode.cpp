@@ -72,11 +72,13 @@ bool MorseCode::build(ifstream& morse, ofstream& log_file)
 		{
 			curr->left = temp_node;
 		}
+
 		else if (in[in.length() - 1] == '-')
 		{
 			curr->right = temp_node;
 		}
 
+		// What in the world was that symbol
 		else
 		{
 			throw std::exception("Error 1: not a valid symbol");
@@ -85,9 +87,7 @@ bool MorseCode::build(ifstream& morse, ofstream& log_file)
 		return true;
 	}
 
-	
-	
-
+	// Make the compiler happy
 	return true;
 }
 
