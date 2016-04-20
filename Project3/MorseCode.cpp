@@ -5,9 +5,7 @@
 MorseCode::MorseCode()
 {
 	root = new Node(0, nullptr, nullptr);
-
 	output = "";
-
 }
 
 // Killah
@@ -57,10 +55,7 @@ bool MorseCode::build(ifstream& morse, ofstream& log_file)
 			{
 				throw std::exception("Error 1: not a valid symbol");
 			}
-
-
 		}
-
 
 		// Give the letter a new home
 		Node* temp_node = new Node(letter, nullptr, nullptr);
@@ -88,6 +83,20 @@ bool MorseCode::build(ifstream& morse, ofstream& log_file)
 
 	// Make the compiler happy
 	return true;
+}
+
+//prints tree inorder
+void MorseCode::printTree()
+{
+	printTree(root);
+}
+
+//prints tree inorder
+void MorseCode::printTree(Node* n)
+{
+	if(n->left != nullptr)printTree(n->left);
+	cout << n->data << endl;
+	if (n->right != nullptr)printTree(n->right);
 }
 
 // See if we have a Morse Code Tree

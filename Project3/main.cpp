@@ -57,6 +57,9 @@ int main()
 	morse.close();
 
 
+	cout << "Attempting to display tree...\n";
+	morsecode.printTree();
+
 	// Call the menu for entering calculations
 	while (true)
 	{

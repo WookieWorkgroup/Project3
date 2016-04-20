@@ -25,6 +25,10 @@ public:
 	// Builds the table using a file
 	bool build(ifstream& morse, ofstream& log_file);
 	
+	//prints tree
+	void printTree();
+	void printTree(Node* n);
+
 	// Translation functions
 	string encode(string input);
 	string decode(string input);
