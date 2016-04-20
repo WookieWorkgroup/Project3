@@ -85,6 +85,19 @@ bool MorseCode::build(ifstream& morse, ofstream& log_file)
 	return true;
 }
 
+void MorseCode::getMorseValues(ifstream& morse)
+{
+	char c;
+	string s;
+	while (morse.good())
+	{
+		c = morse.get();
+		morse.get(); //throw away space
+		getline(morse, s);
+		encodings[c] = s;
+	}
+}
+
 //prints tree inorder
 void MorseCode::printTree()
 {
@@ -119,3 +132,13 @@ void MorseCode::clear()
 	return;
 }
 
+string MorseCode::encode(string input)
+{
+	stringstream ss;
+	for (int i = 0; i < input.size(); ++i)
+	{
+		ss << encodings[input[i]];
+		if (i < input.size() - 1) ss << " ";
+	}
+	return ss.str();
+}

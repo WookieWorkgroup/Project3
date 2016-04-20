@@ -46,6 +46,8 @@ int main()
 		cerr << "Log.txt did not open, bye!" << endl;
 	}
 
+	morsecode.getMorseValues(morse);
+	cout << morsecode.encode("a");
 	// Put the morse code into a binary tree
 	while (morsecode.build(morse, log_file) && morse.good())
 	{
@@ -55,10 +57,6 @@ int main()
 
 	// All done with Mr Morse's input
 	morse.close();
-
-
-	cout << "Attempting to display tree...\n";
-	morsecode.printTree();
 
 	// Call the menu for entering calculations
 	while (true)
@@ -131,7 +129,7 @@ void displayMenu(ofstream& log_file, MorseCode& morsecode, string& result)
 			result = "";
 			user_input = "";
 		}
-
+		cout << "Message encoded: " << morsecode.encode(user_input) << endl;
 
 		cout << endl << endl;
 		break;

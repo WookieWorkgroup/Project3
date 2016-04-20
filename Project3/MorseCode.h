@@ -2,8 +2,11 @@
 
 // Class for morse code
 #include <iostream>
+#include <vector>
+#include <map>
 #include <string> 
 #include <fstream>
+#include <sstream>
 #include "Node.h"
 
 
@@ -24,7 +27,8 @@ public:
 	
 	// Builds the table using a file
 	bool build(ifstream& morse, ofstream& log_file);
-	
+	void getMorseValues(ifstream& morse);
+
 	//prints tree
 	void printTree();
 	void printTree(Node* n);
@@ -35,6 +39,7 @@ public:
 
 private:
 	// Our variables
+	map<char, string> encodings;
 	string output;
 	Node* root;
 };
