@@ -25,7 +25,7 @@ public:
 	// Builds the table using a file
 	bool build(ifstream& morse, ofstream& log_file);
 	
-	// Transaltion functions
+	// Translation functions
 	string encode(string input);
 	string decode(string input);
 
