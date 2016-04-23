@@ -7,6 +7,7 @@
 #include <string> 
 #include <fstream>
 #include <sstream>
+#include <istream>
 #include "Node.h"
 
 
@@ -40,6 +41,7 @@ public:
 private:
 	// Our variables
 	map<char, string> encodings;
+	map<string, char> decodings;
 	string output;
 	Node* root;
 };

@@ -168,7 +168,7 @@ void displayMenu(ofstream& log_file, MorseCode& morsecode, string& result)
 
 		}
 
-
+		cout << "Message decoded: " << morsecode.decode(user_input) << endl;
 		cout << endl << endl;
 		break;
 	case 3:
