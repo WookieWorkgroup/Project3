@@ -11,7 +11,8 @@ MorseCode::MorseCode()
 // Killah
 MorseCode::~MorseCode()
 {
-
+	if (root)
+		delete[] root;
 }
 
 // Build a binary tree of morse code letters using a text file (* is left and - is right)
@@ -95,6 +96,7 @@ void MorseCode::getMorseValues(ifstream& morse)
 		morse.get(); //throw away space
 		getline(morse, s);
 		encodings[c] = s;
+		decodings[s] = c;
 	}
 }
 
@@ -141,4 +143,18 @@ string MorseCode::encode(string input)
 		if (i < input.size() - 1) ss << " ";
 	}
 	return ss.str();
+}
+
+string MorseCode::decode(string input)
+{
+	stringstream ss;
+	ss << input;
+	string letters;
+	while(ss)
+	{
+		string temp;
+		ss >> temp;
+		letters += decodings[temp];
+	}
+	return letters;
 }

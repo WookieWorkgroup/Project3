@@ -1,3 +1,2 @@
-User entered a
-User entered hey
-User entered hello world
+User entered ---
+User entered -*-- --** -**- *-*
