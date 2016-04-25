@@ -137,7 +137,7 @@ string MorseCode::encode(string input)
 	stringstream ss;
 	for (int i = 0; i < input.size(); ++i)
 	{
-		ss << encodings[input[i]];
+		ss << encodings[tolower(input[i])];
 		if (i < input.size() - 1) ss << " ";
 	}
 	return ss.str();
