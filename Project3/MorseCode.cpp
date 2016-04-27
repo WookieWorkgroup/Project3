@@ -8,11 +8,10 @@ MorseCode::MorseCode()
 	output = "";
 }
 
-// Killah
+// Destructor
 MorseCode::~MorseCode()
 {
-	if (root)
-		delete[] root;
+	Free_nodes(root);
 }
 
 // Build a binary tree of morse code letters using a text file (* is left and - is right)
@@ -170,4 +169,14 @@ string MorseCode::decode(string input)
 		letters += decodings[temp];
 	}	
 	return letters;
+}
+
+//free the nodes
+void MorseCode::Free_nodes(Node* aroot)
+{
+	if (aroot == NULL)
+		return;
+	Free_nodes(aroot->left);
+	Free_nodes(aroot->right);
+	delete[] aroot;
 }

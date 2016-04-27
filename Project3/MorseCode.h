@@ -43,6 +43,9 @@ private:
 	map<char, string> encodings;
 	map<string, char> decodings;
 
+	//free nodes, can be used for the destructor
+	void Free_nodes(Node* aroot);
+
 	string output;
 	Node* root;
 };
