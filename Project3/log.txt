@@ -1,2 +1,21 @@
-*-User entered gfdsa
-Message decoded: --* **-* -** *** *-
+User entered 5
+Error code receieved: 5
+Encode failed, try again!!!
+Purging previous data
+User entered +
+Error code receieved: 3
+Encode failed, try again!!!
+Purging previous data
+User entered L
+Error code receieved: 4
+Encode failed, try again!!!
+Purging previous data
+User entered l
+Error code receieved: 4
+Encode failed, try again!!!
+Purging previous data
+User entered *-----
+Error code receieved: 6
+Encode failed, try again!!!
+Purging previous data
+User entered *--

@@ -136,7 +136,7 @@ void displayMenu(ofstream& log_file, MorseCode& morsecode, string& result)
 		cout << endl << endl;
 		break;
 
-	// Message to decode
+		// Message to decode
 	case 2:
 		cout << endl << endl;
 		cout << "Enter the message to decode: ";
@@ -146,33 +146,36 @@ void displayMenu(ofstream& log_file, MorseCode& morsecode, string& result)
 		// See if the polynomial is poperly entered
 		try
 		{
-			//result = morsecode.decode(user_input);
-			cout << "Message to decode successfully entered" << endl;
+			//Check for errors and throw codes as necessary
+			string punctuation = "!@#$%^&()_=+`~[]{}|\\;:'\"<>,./?";
+			for (int i = 0; i < punctuation.length(); ++i)if (user_input.find(punctuation[i]) != string::npos) throw 3;
+			for (int i = 0; i < user_input.size(); i++) if (isalpha(user_input[i])) throw 4;
+			string numbers = "0123456789";
+			for (int i = 0; i < numbers.length(); ++i)if (user_input.find(numbers[i]) != string::npos) throw 5;
+			//---------------------------------------------
+
+
+			result = morsecode.decode(user_input);
+			cout << "Message decoded: " << result << endl;
 		}
 
 		// Bad input, try again
-		catch (const std::exception &e)
+		catch (int i)
 		{
 			std::cout << std::endl << std::endl;
-
-			std::cout << e.what() << std::endl << std::endl;
-			log_file << e.what() << endl;
-			std::cout << "Process failed, try again!!!" << std::endl;
-			std::cout << "Purging previous data" << std::endl;
-			std::cout << "See log.txt for details" << std::endl;
-			log_file << "Decode failed, try again!!!" << std::endl;
+			log_file << "Error code receieved: " << i << endl;
+			cout << "Input failed, please try again. Consult log file for more information.\n";
+			log_file << "Encode failed, try again!!!" << std::endl;
 			log_file << "Purging previous data" << std::endl;
 
 			// Clear any result, user input, or data to purge error
-			morsecode.clear();
+			//morsecode.clear();
 			result = "";
 			user_input = "";
-
 		}
-
-		cout << "Message decoded: " << morsecode.decode(user_input) << endl;
 		cout << endl << endl;
 		break;
+
 	case 3:
 		cout << endl << endl;
 		cout << "Last message coded/decoded was " << result << endl;

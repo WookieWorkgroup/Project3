@@ -151,17 +151,23 @@ string MorseCode::decode(string input)
 {
 	stringstream ss;
 	
-	
+	//Separate the input with spaces
 	ss << input;
 	string letters;
-	
+
 	while(ss)
 	{
 		string temp;
 		ss >> temp;
-		letters += decodings[temp];
-	}
 
-	
+		//Check if the temp is the end
+		if (temp == "")
+			break;
+
+		//Check if the input is valid
+		if (decodings.find(temp)==decodings.end())
+			throw 6;
+		letters += decodings[temp];
+	}	
 	return letters;
 }
