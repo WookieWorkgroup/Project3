@@ -1,2 +1,4 @@
-User entered ---
-User entered -*-- --** -**- *-*
+User entered w3w
+Error code receieved: -2
+Encode failed, try again!!!
+Purging previous data

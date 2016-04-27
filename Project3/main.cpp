@@ -47,12 +47,10 @@ int main()
 	}
 
 	morsecode.getMorseValues(morse);
-	cout << morsecode.encode("a");
 	// Put the morse code into a binary tree
 	while (morsecode.build(morse, log_file) && morse.good())
 	{
 		log_file << "added letter, back to main" << endl;
-
 	}
 
 	// All done with Mr Morse's input
@@ -107,20 +105,26 @@ void displayMenu(ofstream& log_file, MorseCode& morsecode, string& result)
 		// See if the polynomial is poperly entered
 		try
 		{
-			//result = morsecode.encode(user_input);
-			cout << "Message to encode successfully entered" << endl;
+			//Check for errors and throw codes as necessary
+			//Letters are automatically converted to lowercase when encoded, so we don't need to check capitalization here
+			string punctuation = "!@#$%^&*()-_=+`~[]{}|\\;:'\"<>,./?";
+			for (int i = 0; i < punctuation.length(); ++i)if (user_input.find(punctuation[i]) != string::npos) throw 1;
+
+			string numbers = "0123456789";
+			for (int i = 0; i < numbers.length(); ++i)if (user_input.find(numbers[i]) != string::npos) throw 2;
+			//---------------------------------------------
+
+
+			result = morsecode.encode(user_input);
+			cout << "Message encoded: " << result << endl;
 		}
 
 		// Bad input, try again
-		catch (const std::exception &e)
+		catch (int i)
 		{
 			std::cout << std::endl << std::endl;
-
-			std::cout << e.what() << std::endl << std::endl;
-			log_file << e.what() << endl;
-			std::cout << "Process failed, try again!!!" << std::endl;
-			std::cout << "Purging previous data" << std::endl;
-			std::cout << "See log.txt for details" << std::endl;
+			log_file << "Error code receieved: " << i << endl;
+			cout << "Input failed, please try again. Consult log file for more information.\n";
 			log_file << "Encode failed, try again!!!" << std::endl;
 			log_file << "Purging previous data" << std::endl;
 
@@ -129,8 +133,6 @@ void displayMenu(ofstream& log_file, MorseCode& morsecode, string& result)
 			result = "";
 			user_input = "";
 		}
-		cout << "Message encoded: " << morsecode.encode(user_input) << endl;
-
 		cout << endl << endl;
 		break;
 
