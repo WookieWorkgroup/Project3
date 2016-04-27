@@ -134,10 +134,11 @@ void MorseCode::clear()
 	return;
 }
 
+// Encode a message
 string MorseCode::encode(string input)
 {
 	stringstream ss;
-	for (int i = 0; i < input.size(); ++i)
+	for (unsigned int i = 0; i < input.size(); ++i)
 	{
 		ss << encodings[tolower(input[i])];
 		if (i < input.size() - 1) ss << " ";
@@ -145,16 +146,22 @@ string MorseCode::encode(string input)
 	return ss.str();
 }
 
+// Decode
 string MorseCode::decode(string input)
 {
 	stringstream ss;
+	
+	
 	ss << input;
 	string letters;
+	
 	while(ss)
 	{
 		string temp;
 		ss >> temp;
 		letters += decodings[temp];
 	}
+
+	
 	return letters;
 }

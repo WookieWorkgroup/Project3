@@ -42,6 +42,7 @@ private:
 	// Our variables
 	map<char, string> encodings;
 	map<string, char> decodings;
+
 	string output;
 	Node* root;
 };
