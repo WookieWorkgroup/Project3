@@ -1,39 +1,14 @@
-User entered 1
-Error code receieved: 2
-Encode failed, try again!!!
-Purging previous data
-User entered *
-Error code receieved: 1
-Encode failed, try again!!!
-Purging previous data
-User entered a
-User entered A1
-Error code receieved: 2
-Encode failed, try again!!!
-Purging previous data
-User entered A
-User entered sadaD
-User entered 2
+User entered test
+Message encoded: - * *** -
+User entered - * ***     -
+Message decoded: test
+Last message coded/decoded was test
+Entries cleared
+
+Nothing there, try giving us a message to encode/decode 
+User entered trwtrtrartbnrn    trwbngrbg
+Message encoded: - *-* *-- - *-* - *-* *- *-* - -*** -* *-* -*     - *-* *-- -*** -* --* *-* -*** --*
+User entered 8*
 Error code receieved: 5
 Encode failed, try again!!!
 Purging previous data
-User entered +
-Error code receieved: 3
-Encode failed, try again!!!
-Purging previous data
-User entered d
-Error code receieved: 4
-Encode failed, try again!!!
-Purging previous data
-User entered F
-Error code receieved: 4
-Encode failed, try again!!!
-Purging previous data
-User entered *-- -*--
-User entered *-- *----
-Error code receieved: 6
-Encode failed, try again!!!
-Purging previous data
-Entries cleared
-
-User entered *-- -*--

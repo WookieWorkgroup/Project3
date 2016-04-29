@@ -26,27 +26,33 @@ public:
 	bool isEmpty();
 	void clear();
 	
-	// Builds the table using a file
+	// Builds the tree for decoding
 	bool build(ifstream& morse, ofstream& log_file);
+
+	// Builds the map for encoding
 	void getMorseValues(ifstream& morse);
 
-	//prints tree
-	void printTree();
-	void printTree(Node* n);
+	// Prints tree for testing 
+	void printTree(); // Wrapper
+	void printTree(Node* n); // Recursive function
 
 	// Translation functions
 	string encode(string input);
 	string decode(string input);
 
 private:
-	// Our variables
+
+	// Our map for decoding
 	map<char, string> encodings;
 	map<string, char> decodings;
 
 	//free nodes, can be used for the destructor
 	void Free_nodes(Node* aroot);
 
+	// Output of transalated message
 	string output;
+
+	// Root of the tree for decoding
 	Node* root;
 };
 

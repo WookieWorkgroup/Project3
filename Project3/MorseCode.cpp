@@ -14,7 +14,7 @@ MorseCode::~MorseCode()
 	Free_nodes(root);
 }
 
-// Build a binary tree of morse code letters using a text file (* is left and - is right)
+// Build a binary tree of morse code letters using a text file (* is left and - is right) for decoding
 bool MorseCode::build(ifstream& morse, ofstream& log_file)
 {
 	// Starter variables to read in data
@@ -85,31 +85,46 @@ bool MorseCode::build(ifstream& morse, ofstream& log_file)
 	return true;
 }
 
+
+// Builds a morse code map for encoding
 void MorseCode::getMorseValues(ifstream& morse)
 {
+	// Some basic variables
 	char c;
 	string s;
+
+	// Go through the file and build the map one line at a time
 	while (morse.good())
 	{
+		// Get a letter
 		c = morse.get();
-		morse.get(); //throw away space
+		
+		//throw away space
+		morse.get(); 
+
+		// Get the code
 		getline(morse, s);
+
+		// Store in the map
 		encodings[c] = s;
 		decodings[s] = c;
 	}
 }
 
-//prints tree inorder
+//prints tree inorder, wrapper function
 void MorseCode::printTree()
 {
 	printTree(root);
 }
 
-//prints tree inorder
+// Recursive call for printing the tree inorder, for testing purposes
 void MorseCode::printTree(Node* n)
 {
+	// Print left
 	if(n->left != nullptr)printTree(n->left);
 	cout << n->data << endl;
+
+	// Print right
 	if (n->right != nullptr)printTree(n->right);
 }
 
@@ -136,12 +151,20 @@ void MorseCode::clear()
 // Encode a message
 string MorseCode::encode(string input)
 {
+	// Store results in a string stream
 	stringstream ss;
+
+	// Go through input
 	for (unsigned int i = 0; i < input.size(); ++i)
 	{
+		// Look at encodings via map
 		ss << encodings[tolower(input[i])];
+
+		// Add space between codes for each letter
 		if (i < input.size() - 1) ss << " ";
 	}
+
+	// Return the encoded string
 	return ss.str();
 }
 
@@ -166,17 +189,26 @@ string MorseCode::decode(string input)
 		//Check if the input is valid
 		if (decodings.find(temp)==decodings.end())
 			throw 6;
+
+		// Store decoded output
 		letters += decodings[temp];
 	}	
+
+	// Return the output
 	return letters;
 }
 
-//free the nodes
+// Clears the binary tree, used by the destructor
 void MorseCode::Free_nodes(Node* aroot)
 {
+	// Empty case
 	if (aroot == NULL)
 		return;
+
+	// Otherwise recursively delete nodes through the tree
 	Free_nodes(aroot->left);
 	Free_nodes(aroot->right);
+	
+	// Delete the root and done
 	delete[] aroot;
 }
