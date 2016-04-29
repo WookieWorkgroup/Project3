@@ -53,7 +53,7 @@ bool MorseCode::build(ifstream& morse, ofstream& log_file)
 			// That was not a valid symbol
 			else
 			{
-				throw std::exception("Error 1: not a valid symbol");
+				throw std::exception("Error 6: not a valid symbol");
 			}
 		}
 
@@ -75,7 +75,7 @@ bool MorseCode::build(ifstream& morse, ofstream& log_file)
 		// What in the world was that symbol
 		else
 		{
-			throw std::exception("Error 1: not a valid symbol");
+			throw std::exception("Error 7: not a valid symbol");
 		}
 
 		return true;
